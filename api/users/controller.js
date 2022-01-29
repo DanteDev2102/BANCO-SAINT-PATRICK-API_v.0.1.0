@@ -5,7 +5,7 @@ const registerUser = (dataNewUser) => {
 	return new Promise((resolve, reject) => {
 		const { username, password, name, lastname } = dataNewUser;
 		if (!username || !password || !name || !lastname) {
-			reject('error in data');
+			reject('incomplete data');
 			return false;
 		}
 		hash(password, 10, (error, passwordHashed) => {
