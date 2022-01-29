@@ -1,19 +1,28 @@
-const Sequelize = require("sequelize");
-const { dbName, userDb, userPassword } = require("./config");
+const Sequelize = require('sequelize');
+const { dbName, userDb, userPassword } = require('./config');
+const UserModel = require('../api/users/model');
 
-const connectDb = async () => {
-    const sequelize = new Sequelize(dbName, userDb, userPassword, {
-        host: "localhost",
-        dialect: "mysql",
-    });
+const sequelize = new Sequelize(dbName, userDb, userPassword, {
+	host: 'localhost',
+	dialect: 'mysql'
+});
 
-    try {
-        await sequelize.authenticate();
-        console.log("Connected to DB");
-    } catch (error) {
-        console.log("Unable to connect to database: " + error.message);
-        process.exit(1);
-    }
+const connectDB = async () => {
+	try {
+		await sequelize.authenticate();
+		console.log('Connected to DB');
+	} catch (error) {
+		console.log(
+			'Unable to connect to database: ' + error.message
+		);
+		process.exit(1);
+	}
 };
 
-module.exports = connectDb;
+const User = UserModel(sequelize, Sequelize);
+
+sequelize
+	.sync({ force: false })
+	.then(() => console.log('tables sync...'));
+
+module.exports = { connectDB, User };
