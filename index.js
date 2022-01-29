@@ -7,11 +7,11 @@ const { portServer, hostServer } = require('./network/config');
 
 const app = express();
 
-routes(app);
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
+
+routes(app);
 
 app.listen(portServer, () => {
 	connectDB();
