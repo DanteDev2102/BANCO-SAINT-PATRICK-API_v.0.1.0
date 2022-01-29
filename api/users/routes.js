@@ -1,12 +1,13 @@
 const routes = require('express').Router();
-const { register } = require('./controller');
+const { registerUser } = require('./controller');
 const { success, error } = require('../../network/response');
 
+// exclusive use for mocks...
 routes.put('/', async (req, res) => {
 	const dataNewUser = req.body;
 	try {
-		const register = await register(dataNewUser);
-		success(req, res, 201, 'user created successfully');
+		const register = await registerUser(dataNewUser);
+		success(req, res, 201, register);
 	} catch (err) {
 		error(
 			req,
