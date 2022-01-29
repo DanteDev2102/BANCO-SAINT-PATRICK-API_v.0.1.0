@@ -13,10 +13,8 @@ const registerUser = (dataNewUser) => {
 				console.error(error);
 				return false;
 			}
-			dataNewUser = {
-				...dataNewUser,
-				password: passwordHashed
-			};
+			dataNewUser.password = passwordHashed;
+			// console.table(dataNewUser);
 			resolve(register(dataNewUser));
 		});
 	});
