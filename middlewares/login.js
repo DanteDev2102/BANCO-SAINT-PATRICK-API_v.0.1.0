@@ -3,4 +3,5 @@ const configAuth = {
 	failureRedirect: '/login',
 	failureMessage: 'username or password problem'
 };
-export const login = passport.authenticate('local', configAuth);
+const login = passport.authenticate('local', configAuth);
+module.exports = login;
