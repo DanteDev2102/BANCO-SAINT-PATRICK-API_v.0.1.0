@@ -10,6 +10,7 @@ const {
 	hostServer,
 	sessionSecret
 } = require('./network/config');
+const __session = require('./middlewares/session');
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(__session(req, res, next));
 
 routes(app);
 
