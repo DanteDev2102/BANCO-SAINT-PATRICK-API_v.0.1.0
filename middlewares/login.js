@@ -1,6 +1,6 @@
 const passport = require('passport');
 const configAuth = {
-	failureRedirect: '/login',
+	failureRedirect: '/',
 	failureMessage: 'username or password problem'
 };
 const login = passport.authenticate('local', configAuth);

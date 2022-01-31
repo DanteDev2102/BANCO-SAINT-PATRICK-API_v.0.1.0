@@ -1,3 +1,5 @@
+const { compare } = require('bcryptjs');
+
 const { User } = require('../../network/database');
 
 const registerUser = async (newUser) => {
@@ -16,4 +18,24 @@ const registerUser = async (newUser) => {
 	}
 };
 
-module.exports = { register: registerUser };
+const loginUser = async (username, password, done) => {
+	console.log(username);
+	try {
+		const user = await User.findOne({
+			where: { username }
+		});
+		if (!isExistUser) return done(null, false);
+
+		const isCorrectPassword = await compare(
+			password,
+			user.password
+		);
+		if (!isCorrectPassword) return done(null, false);
+
+		return done(null, user);
+	} catch (error) {
+		return done(error);
+	}
+};
+
+module.exports = { register: registerUser, login: loginUser };
