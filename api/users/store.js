@@ -18,24 +18,4 @@ const registerUser = async (newUser) => {
 	}
 };
 
-const loginUser = async (username, password, done) => {
-	console.log(username);
-	try {
-		const user = await User.findOne({
-			where: { username }
-		});
-		if (!isExistUser) return done(null, false);
-
-		const isCorrectPassword = await compare(
-			password,
-			user.password
-		);
-		if (!isCorrectPassword) return done(null, false);
-
-		return done(null, user);
-	} catch (error) {
-		return done(error);
-	}
-};
-
-module.exports = { register: registerUser, login: loginUser };
+module.exports = { register: registerUser };

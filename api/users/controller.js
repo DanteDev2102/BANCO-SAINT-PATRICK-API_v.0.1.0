@@ -1,7 +1,5 @@
 const { hash } = require('bcryptjs');
 const { register, login } = require('./store');
-const localStrategy = require('passport-local').Strategy;
-const passport = require('passport');
 
 const registerUser = (dataNewUser) => {
 	return new Promise((resolve, reject) => {
@@ -21,20 +19,4 @@ const registerUser = (dataNewUser) => {
 	});
 };
 
-const loginUser = (dataUser) => {
-	return new Promise((resolve, reject) => {
-		const { username, password } = dataUser;
-		if (!username || !password) {
-			reject('incomplete data');
-			return false;
-		}
-		const strategy = new localStrategy(
-			(username, password, done) => {
-				login(username, password, done);
-			}
-		);
-		passport.use(resolve(strategy));
-	});
-};
-
-module.exports = { registerUser, loginUser };
+module.exports = { registerUser };

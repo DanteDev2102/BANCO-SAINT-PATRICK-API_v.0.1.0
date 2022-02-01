@@ -10,8 +10,7 @@ const {
 	hostServer,
 	sessionSecret
 } = require('./network/config');
-const __session = require('./middlewares/session');
-
+require('./services/auth/strategy')(passport);
 const app = express();
 
 app.use(express.json());
@@ -25,11 +24,22 @@ app.use(
 		saveUninitialized: true
 	})
 );
+app.use((req, res, next) => {
+	res.locals.session = req.session;
+	next();
+});
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(__session(req, res, next));
 
 routes(app);
+
+app.get('/login', (req, res) => {
+	res.send('no te has podido logear');
+});
+
+app.get('/', (req, res) => {
+	res.send(req.user);
+});
 
 app.listen(portServer, () => {
 	connectDB();
