@@ -18,6 +18,7 @@ module.exports = (passport) => {
 				const user = await User.findOne({
 					where: { username }
 				});
+
 				if (!user) return done(null, false);
 
 				const isCorrectPassword = await compare(
