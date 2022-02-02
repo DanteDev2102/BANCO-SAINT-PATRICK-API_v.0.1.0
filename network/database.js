@@ -23,6 +23,6 @@ const User = UserModel(sequelize, Sequelize);
 
 sequelize
 	.sync({ force: false })
-	.then(() => console.log('tables sync...'));
+	.then(() => console.log('tables sync....'));
 
 module.exports = { connectDB, User };
