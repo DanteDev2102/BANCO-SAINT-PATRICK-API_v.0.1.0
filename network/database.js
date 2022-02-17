@@ -1,6 +1,7 @@
 const Sequelize = require('sequelize');
 const { dbName, userDb, userPassword } = require('./config');
 const UserModel = require('../api/users/model');
+const CardModel = require('../api/cards/model');
 
 const sequelize = new Sequelize(dbName, userDb, userPassword, {
 	host: 'localhost',
@@ -20,9 +21,10 @@ const connectDB = async () => {
 };
 
 const User = UserModel(sequelize, Sequelize);
+const Card = CardModel(sequelize, Sequelize);
 
 sequelize
-	.sync({ force: false })
+	.sync({ force: true })
 	.then(() => console.log('tables sync...'));
 
-module.exports = { connectDB, User };
+module.exports = { connectDB, User, Card };
