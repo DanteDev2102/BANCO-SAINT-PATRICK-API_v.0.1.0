@@ -28,21 +28,8 @@ module.exports = (sequelize, type) => {
 				allowNull: false
 			}
 		},
-<<<<<<< HEAD
-		username: {
-			type: type.STRING,
-			unique: true
-		},
-		password: {
-			type: type.STRING
-		},
-		name: type.STRING,
-		lastname: type.STRING
-	});
-=======
 		{
 			timestamps: false
 		}
 	);
->>>>>>> dante_develop
 };
