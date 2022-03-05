@@ -7,8 +7,8 @@ const __auth = require('../middlewares/auth');
 const routes = (server) => {
 	server.use('/user', user);
 	server.use('/auth', auth);
-	server.use('/card', __auth, card);
-	server.use('/transaction', __auth, transaction);
+	server.use('/card', card);
+	server.use('/transaction', transaction);
 };
 
 module.exports = routes;
