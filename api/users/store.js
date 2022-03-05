@@ -1,5 +1,3 @@
-const { compare } = require('bcryptjs');
-
 const { User } = require('../../network/database');
 
 const registerUser = async (newUser) => {

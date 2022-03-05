@@ -16,7 +16,7 @@ routes.post('/login', (req, res, next) => {
 
 routes.get('/logout', (req, res) => {
 	req.logout();
-	res.redirect('/auth/login');
+	res.redirect('/login');
 });
 
 module.exports = routes;

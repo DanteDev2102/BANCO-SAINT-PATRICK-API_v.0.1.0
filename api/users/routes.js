@@ -1,6 +1,6 @@
 const routes = require('express').Router();
 
-const { registerUser, loginUser } = require('./controller');
+const { registerUser } = require('./controller');
 const { success, error } = require('../../network/response');
 const __auth = require('../../middlewares/auth');
 
