@@ -8,13 +8,19 @@ const statusMessages = {
 
 const success = (req, res, status = 200, message) => {
 	!message && (message = statusMessages[status]);
-	res.status(status).send({ error: '', body: message });
+	if (typeof message === 'string') {
+		res.status(status).send({ error: message });
+	} else {
+		res.status(status).send({
+			...message
+		});
+	}
 };
 
 const error = (req, res, error, status = 500, details) => {
 	!details && (details = statusMessages[status]);
 	console.error(`[response error] ${details}`);
-	res.status(status).send({ error: { error, details }, body: '' });
+	res.status(status).send({ error: { error, details } });
 };
 
 module.exports = {

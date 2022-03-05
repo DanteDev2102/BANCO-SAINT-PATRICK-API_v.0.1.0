@@ -1,5 +1,5 @@
 const { hash } = require('bcryptjs');
-const { register, login } = require('./store');
+const { register } = require('./store');
 
 const registerUser = (dataNewUser) => {
 	return new Promise((resolve, reject) => {

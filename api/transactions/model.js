@@ -1,30 +1,22 @@
 module.exports = (sequelize, type) => {
 	return sequelize.define(
-		'user',
+		'transaction',
 		{
 			id: {
 				type: type.INTEGER,
 				primaryKey: true,
 				autoIncrement: true
 			},
-			username: {
-				type: type.STRING(25),
-				allowNull: false,
-				unique: true,
-				validate: {
-					isAlphanumeric: true
-				}
-			},
-			password: {
-				type: type.STRING(70),
+			origin: {
+				type: type.INTEGER,
 				allowNull: false
 			},
-			name: {
-				type: type.STRING(40),
+			destiny: {
+				type: type.INTEGER,
 				allowNull: false
 			},
-			lastname: {
-				type: type.STRING(40),
+			amount: {
+				type: type.INTEGER,
 				allowNull: false
 			}
 		},

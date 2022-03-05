@@ -1,9 +1,9 @@
 const { hash } = require('bcryptjs');
-const { register } = require('./store');
+const { register, consultingBalance } = require('./store');
 
 const registerCard = (dataNewCard) => {
 	return new Promise((resolve, reject) => {
-		const { pin, number, balance } = dataNewUser;
+		const { pin, number, balance } = dataNewCard;
 		if (!pin || !number || !balance) {
 			reject('incomplete data');
 			return false;
@@ -14,9 +14,19 @@ const registerCard = (dataNewCard) => {
 				return false;
 			}
 			dataNewCard.pin = pinHashed;
-			resolve(register(dataNewCard));
+			return resolve(register(dataNewCard));
 		});
 	});
 };
 
-module.exports = { registerCard };
+const balanceCard = (numberCard) => {
+	return new Promise((resolve, reject) => {
+		if (!numberCard) {
+			reject('not number card');
+			return false;
+		}
+		resolve(consultingBalance(numberCard));
+	});
+};
+
+module.exports = { registerCard, balanceCard };
